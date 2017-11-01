@@ -14,7 +14,28 @@ $(document).ready(function() {
   Append each "row" to the container in the body to display all tracks.
 */
 Trackster.renderTracks = function(tracks) {
+  var $trackList = $('#track-list');
 
+  $trackList.empty();
+
+  for (var trackIndex = 0; trackIndex < tracks.length; trackIndex++) {
+    var track = tracks[trackIndex];
+    var mediumAlbumArt = track.image[1]["#text"];
+    var htmlTrackRow =
+      '<div class="row track">' +
+      '  <div class="col-xs-1 col-xs-offset-1 play-button">' +
+      '    <a href="'+ track.url + '" target="_blank">' +
+      '      <i class="fa fa-play-circle-o fa-2x"></i>' +
+      '    </a>' +
+      '  </div>' +
+      '  <div class="col-xs-4">' + track.name + '</div>' +
+      '  <div class="col-xs-2">' + track.artist + '</div>' +
+      '  <div class="col-xs-2"><img src="' + mediumAlbumArt + '"/></div>' +
+      '  <div class="col-xs-2">' + track.listeners + '</div>' +
+      '</div>';
+
+    $trackList.append(htmlTrackRow);
+  }
 };
 
 /*
